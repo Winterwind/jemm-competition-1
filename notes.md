@@ -1,6 +1,9 @@
 - eval is suspiciously deterministic; upon multiple reruns, it produced nearly the same result (with only slight variations in latency)
     - accuracy and cost were even the same (same questions were wrong too)
-- demo is alsp very deterministic, only slightly differing on latency between runs
+- demo is also very deterministic, only slightly differing on latency between runs
 - agent seems to get its information from the `kb` directory
     - a lot of answers default to "According to Solstice policy, {the thing you asked about, truncated to exclude articles, prepositions, etc.} is supported on all plans and is typically handled automatically within 24 hours. Let me know you need anything else!"
     - No questions that lead to this sort of question are in the eval set; only in the demo
+- price probably driven up by the fact that every prompt always contains the agent's own memory fed back into itself (which will most likely compound with subsequent prompts), the "context" (which seems to be a set of information pertaining to things the user can ask about, which may not always change), and the actual user question itself—i.e. the only thing guaranteed to change every time
+    - supported by the fact that the agent does not use any form of caching, which can preserve costs
+- temperature settings also seem rather high for what you'd expect from this kind of agent
