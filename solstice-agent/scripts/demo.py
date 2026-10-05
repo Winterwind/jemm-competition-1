@@ -36,7 +36,9 @@ TURNS = [
 
 def main():
     agent = Agent()
-    out_path = os.path.join(os.path.dirname(__file__), "..", "traces", "demo_session.txt")
+    out_dir = os.path.join(os.path.dirname(__file__), "..", "traces")
+    demo_iteration = len(os.listdir(out_dir))
+    out_path = os.path.join(out_dir, f"demo_session_{demo_iteration}.txt")
     lines = []
 
     def emit(s=""):
@@ -59,7 +61,7 @@ def main():
 
     with open(out_path, "w") as f:
         f.write("\n".join(lines) + "\n")
-    print("\nTranscript written to traces/demo_session.txt")
+    print(f"\nTranscript written to traces/demo_session_{demo_iteration}.txt")
 
 
 if __name__ == "__main__":
